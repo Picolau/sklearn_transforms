@@ -1,5 +1,4 @@
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.impute import SimpleImputer
 
 # All sklearn Transforms must have the `transform` and `fit` methods
 class Categorizador(BaseEstimator, TransformerMixin):
@@ -35,6 +34,8 @@ class Categorizador(BaseEstimator, TransformerMixin):
     
 # All sklearn Transforms must have the `transform` and `fit` methods
 class SuperImputer(BaseEstimator, TransformerMixin):
+    from sklearn.impute import SimpleImputer
+    
     def __init__(self):
         self.si_ingles = SimpleImputer(
             missing_values=np.nan,  # os valores faltantes são do tipo ``np.nan`` (padrão Pandas)
