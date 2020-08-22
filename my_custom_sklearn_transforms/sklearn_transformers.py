@@ -24,7 +24,11 @@ class Categorizador(BaseEstimator, TransformerMixin):
                 return 1
             else:
                 return 0
-        
+        print(data)
+        print(data["H_AULA_PRES"])
+        print(X)
+        print(X["H_AULA_PRES"])
+        print(type(X))
         data["H_AULA_PRES"] = data.iloc[:,9].apply(categorizar_horas)
         data["FALTAS"] = data.iloc[:,11].apply(categorizar_faltas)
         data["REPROVOU"] = data.iloc[:,0:4].apply(lambda row: bool(row[0] or row[1] or row[2] or row[3]), axis=1)
@@ -43,5 +47,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
     def transform(self, X):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
         data = X.copy()
+        print(type(data))
+        print(type(X))
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
