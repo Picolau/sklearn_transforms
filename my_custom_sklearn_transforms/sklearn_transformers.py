@@ -36,21 +36,10 @@ class Categorizador(BaseEstimator, TransformerMixin):
 class SuperImputer(BaseEstimator, TransformerMixin):
     from sklearn.impute import SimpleImputer
     
-    def __init__(self):
-        self.si_ingles = SimpleImputer(
-            missing_values=np.nan,  # os valores faltantes são do tipo ``np.nan`` (padrão Pandas)
-            strategy='constant',  # a estratégia escolhida é a alteração do valor faltante por uma constante
-            fill_value=0.0,  # a constante que será usada para preenchimento dos valores faltantes é um int64=0.
-            verbose=0,
-            copy=True
-        )
-        self.si_nota_go = SimpleImputer(
-            missing_values=np.nan,  # os valores faltantes são do tipo ``np.nan`` (padrão Pandas)
-            strategy='constant',  # a estratégia escolhida é a alteração do valor faltante por uma constante
-            fill_value=4.5,  # média para nota_go
-            verbose=0,
-            copy=True
-        )
+    def __init__(self, imp_ingles, imp_nota_go):
+        self.si_ingles = imp_ingles
+        self.si_nota_go = imp_nota_go
+        
     def fit(self, X, y=None):
         self.si_ingles.fit(X)
         self.si_nota_go.fit(X)
