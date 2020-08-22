@@ -31,28 +31,7 @@ class Categorizador(BaseEstimator, TransformerMixin):
         
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data
-    
-# All sklearn Transforms must have the `transform` and `fit` methods
-class SuperImputer(BaseEstimator, TransformerMixin):
-    def __init__(self, imp_ingles, imp_nota_go):
-        self.si_ingles = imp_ingles
-        self.si_nota_go = imp_nota_go
-        
-    def fit(self, X, y=None):
-        self.si_ingles.fit(X)
-        self.si_nota_go.fit(X)
-        return self
-    
-    def transform(self, X):
-        # Primeiro realizamos a cópia do dataframe 'X' de entrada
-        data = X.copy()
-        
-        data["INGLES"]=self.si_ingles.fit_transform(data[["INGLES"]]).ravel()
-        data["NOTA_GO"]=self.si_nota_go.fit_transform(data[["NOTA_GO"]]).ravel()
-        
-        # Retornamos um novo dataframe sem as colunas indesejadas
-        return data
-    
+
 # All sklearn Transforms must have the `transform` and `fit` methods
 class DropColumns(BaseEstimator, TransformerMixin):
     def __init__(self, columns):
