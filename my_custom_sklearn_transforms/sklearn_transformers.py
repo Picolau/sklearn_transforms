@@ -34,8 +34,6 @@ class Categorizador(BaseEstimator, TransformerMixin):
     
 # All sklearn Transforms must have the `transform` and `fit` methods
 class SuperImputer(BaseEstimator, TransformerMixin):
-    from sklearn.impute import SimpleImputer
-    
     def __init__(self, imp_ingles, imp_nota_go):
         self.si_ingles = imp_ingles
         self.si_nota_go = imp_nota_go
